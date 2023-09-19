@@ -1,0 +1,11 @@
+FROM ubuntu:latest
+RUN apt-get update && apt-get upgrade -y
+RUN apt-get install -y curl php8.1-mbstring php8.1-zip php8.1-intl php8.1-xml php8.1-curl
+RUN apt-get install -y apache2
+RUN service start apache2
+RUN apt-get install -y redis
+RUN apt-get install -y git
+WORKDIR /var/www/html
+RUN rm index.html
+RUN git clone https://github.com/IlyaFullDev/cbr-courses.git .
+EXPOSE 80
